@@ -1,0 +1,13 @@
+{
+  "model_params": {
+    "encoder__hidden_layers": 30,
+    "encoder__hidden_base": 360.0,
+    "encoder__hidden_scale": "log_1.025",
+    "encoder__n_output": 128,
+    "grade__hidden_layers": 1,
+    "tensile__hidden_layers": 1,
+    "optical__hidden_layers": 1,
+    "fire__hidden_layers": 1,
+    "dtype_str": "float32"
+  }
+}
