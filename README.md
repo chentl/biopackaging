@@ -137,6 +137,7 @@ model = load_model('pt_db.v3hp.RE5C')
 - **`cluster_sensitivity_analysis.ipynb`**: DBSCAN clustering sensitivity analysis across eps/min_samples parameter grids. Evaluates cluster stability using ARI, NMI, silhouette scores with uncertainty filtering.
 - **`data_augmentation.ipynb`**: Synthetic data generation techniques for training data expansion
 - **`design_boundary*.ipynb`** (3 notebooks): Design space exploration, model-based boundaries, variance analysis
+- **`evaluate_models.ipynb`**: Comprehensive model evaluation including grade task losses, 5-fold cross-validation, ensemble vs individual model comparison, and performance on tensile/optical properties (ANN demo dataset).
 - **`shap.ipynb`**: SHAP feature importance and model interpretability
 
 ## Configuration
