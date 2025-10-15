@@ -55,12 +55,6 @@ biopackaging/
 └── shap.ipynb                      # SHAP interpretability
 ```
 
-## Material Components (23 Total)
-
-**Structural** (5): LAP (Laponite), MMT (Montmorillonite), CMC, CNF, SLK (Silk)  
-**Biopolymers** (10): AGR, ALG, CAR, CHS, PEC, PUL, STA, GEL, GLU, ZIN  
-**Additives/Plasticizers** (8): GLY, FFA, LAC, LEV, PHA, SRB, SUA, XYL
-
 ## Quick Start
 
 ### Predict Properties
@@ -100,21 +94,10 @@ optimizer = UniformCompositionGenerator(
 optimal_comps = optimizer.optimize()
 ```
 
-### Train Models
-```bash
-python -m matal.ann_model.main --data_name mydata --epochs 100 --lr 1e-5 --device cuda
-```
-
-## Model Architecture
+## Model
 
 **Ensemble**: 5 independent models (RE5C, VPLV, PFFZ, CPUT, 2HNP)
 
-- **Encoder**: 23D input → 12 hidden layers (ELU) → 8D latent space
-- **Task Heads** (4 layers each):
-  - Grade → 3 outputs (Detachability, Flatness, Feasibility)
-  - Optical → 3 outputs (Vis/IR/UV transmission)
-  - Tensile → 4 outputs (Strength, Strain, Modulus, SED)
-  - Fire → 1 output (Fire Resistance)
 - **Prediction**: Mean across 5 models; Uncertainty = standard deviation
 
 ## Model Files
@@ -122,9 +105,7 @@ python -m matal.ann_model.main --data_name mydata --epochs 100 --lr 1e-5 --devic
 Each model directory (`model/v3hp/pt_db.v3hp.*/`) contains:
 - `*.model.pt.lz4`: PyTorch model weights (LZ4 compressed)
 - `*.opt.pt.lz4`: Optimizer state (LZ4 compressed)
-- `*.param.json`: Model hyperparameters and training configuration
 - `*.param.pk`: Pickled parameters
-- `*.hist.csv`: Training history (loss, metrics per epoch)
 
 **Loading models**:
 ```python
@@ -140,20 +121,5 @@ model = load_model('pt_db.v3hp.RE5C')
 - **`evaluate_models.ipynb`**: Comprehensive model evaluation including grade task losses, 5-fold cross-validation, ensemble vs individual model comparison, and performance on tensile/optical properties (ANN demo dataset).
 - **`shap.ipynb`**: SHAP feature importance and model interpretability
 
-## Configuration
-
-**Model**: Edit `matal/ann_model/config.py` (layers, activation, dropout, init)  
-**Training**: CLI arguments (lr, epochs, l2, noise_std, batch size)  
-**Caching**: Automatic caching for checkpoints, compositions, predictions
-
-## Performance
-
-- LZ4/Zstandard compression for efficient storage
-- GPU acceleration via PyTorch
-- Parallel processing with joblib
-- Fast data handling with polars
-
 ---
-
-**Note**: Research project - validate predictions experimentally before production use.
 
