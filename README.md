@@ -1,4 +1,4 @@
-# Biopackaging Materials Research
+# Scalable Discovery of Sustainable Biobased Packaging via Multimodal Predictive Modeling for Improved Postharvest Preservation
 
 Machine learning framework for predicting and optimizing biopackaging material properties using ensemble neural networks.
 
